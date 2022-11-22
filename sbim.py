@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 
-rng = np.random.default_rng()
+rng = np.random.default_rng(0)
 
 def sbim_defectives(m, k, p, q1, q2):
 
@@ -46,10 +46,10 @@ def main():
         seed[i] = average_defectives(trials, 20, 50, x[i], 0, 0)
 
     plt.title("Simulated SBIM defectives")
-    plt.plot(x, full, label="Full infection model")
-    plt.plot(x, inter, label="Seed selection + inter-community")
-    plt.plot(x, intra, label="Seed selection + intra-community")
-    plt.plot(x, seed, label="Seed selection only")
+    plt.plot(x, full, marker="x", label="Full infection model")
+    plt.plot(x, inter, marker="x", label="Seed selection + inter-community")
+    plt.plot(x, intra, marker="x", label="Seed selection + intra-community")
+    plt.plot(x, seed, marker="x", label="Seed selection only")
     plt.legend(loc='upper left')
     plt.xlim([0, 0.01])
     plt.ylim([0, 160])
