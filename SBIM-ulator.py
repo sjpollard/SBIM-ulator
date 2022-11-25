@@ -11,10 +11,12 @@ def sbim_defectives(m, k, p, q1, q2):
     for community in range(m):
         for node in range(k):
             if seeds[0][community][node]:
-                network[0][community] = np.logical_or(network[0][community], rng.choice([False, True], (1, k), p=[1 - q1, q1]))
+                intra_mask = rng.choice([False, True], (1, k), p=[1 - q1, q1])
+                network[0][community] = np.logical_or(network[0][community], intra_mask)
                 for i in range(m):
                     if i != community:
-                        network[0][i] = np.logical_or(network[0][i], rng.choice([False, True], (1, k), p=[1 - q2, q2]))
+                        inter_mask = rng.choice([False, True], (1, k), p=[1 - q2, q2])
+                        network[0][i] = np.logical_or(network[0][i], inter_mask)
 
     return np.sum(np.ravel(network))
 
